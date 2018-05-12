@@ -1,0 +1,1 @@
+mex -I/usr/local/include/ -I/opt/local/include -L/usr/local/lib -L/opt/local/lib -largeArrayDims infer/compute_psi.cpp
