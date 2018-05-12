@@ -11,7 +11,7 @@ dataset_name = 'mnist';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Choose the paths
-data_path = '../../augment-reduce-data';     % Replace with the path to your dataset
+data_path = '../../augment-reduce-data/dat';     % Replace with the path to your dataset
 output_path = './results';                   % Replace with the path to the output folder
 
 % NOTE: You can download the data used in the A&R paper from this repo:
