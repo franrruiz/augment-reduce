@@ -45,3 +45,7 @@ data.test.Y   the test labels (test_instances x 1). Each element indicates the c
 ```
 
 Please refer to the main files in `src/` for additional information.
+
+### Datasets
+
+You can also obtain [the datasets](https://bitbucket.org/franrruiz/augment-reduce-data/src) used in the paper.

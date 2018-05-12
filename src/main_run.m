@@ -16,7 +16,6 @@ output_path = './results';                   % Replace with the path to the outp
 
 % NOTE: You can download the data used in the A&R paper from this repo:
 % https://bitbucket.org/franrruiz/augment-reduce-data/src
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Choose method (uncomment only one)
