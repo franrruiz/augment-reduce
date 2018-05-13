@@ -30,9 +30,9 @@ method_name = 'softmax_a&r';  % Sofmax A&R
 %% Choose parameters
 param.flag_mexFile = 1;       % Use compiled mex files?
 param.s2prior = inf;          % Variance of the prior over the weights and intercepts (inf for maximum likelihood)
-param.step_eta= 0.02;         % Learning rate
+param.step_eta= 0.02;         % Learning rate for the M step
 param.flag_imp_sampling = 0;  % Use importance sampling when sampling negative classes?
-param.computePredTrain = 0;   % Compute predictions on training data?
+param.computePredTrain = 0;   % Compute predictions on training data? (it may be expensive)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get the data and default parameters
@@ -50,4 +50,25 @@ rand('seed',0);
 randn('seed',0);
 
 %% Run classification
+% 
+% INPUTS:
+% 
+% data                        a struct containing the data
+%    data.X                   the training data (instances x dimensions). It MUST be in sparse matrix format (use the command sparse).
+%    data.Y                   the training labels (instances x 1). Each element indicates the class (from 1, ..., K).
+%    data.test                a struct containing the test data
+%       data.test.X           the test data (test_instances x dimensions). It MUST be in sparse matrix format.
+%       data.test.Y           the test labels (test_instances x 1). Each element indicates the class (from 1, ..., K).
+% param                       a struct containing the parameters
+%    param.flag_mexFile       use compiled mex files?
+%    param.flag_imp_sampling  use importance sampling when sampling negative classes?
+%    param.s2prior            variance of the prior over the weights and intercepts (inf for maximum likelihood)
+%    param.step_eta           learning rate for the M step
+%    param.computePredTrain   compute predictions on training data? (it may be expensive)
+%    param.maxIter            maximum number of iterations
+%    param.B                  minibatch size (observations)
+%    param.ns                 minibatch size (classes)
+%    param.method             which method to use {'sm_augm', 'probit_persistent', 'logistic_persistent', 'ove', 'botev', 'softmax'}
+
 run_classification(data, param);
+

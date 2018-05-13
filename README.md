@@ -36,12 +36,12 @@ Copy the output on the clipboard; you will need it for the second step.
 The data should be contained in a Matlab struct object and it must contain the following fields:
 
 ```
-data          a struct containing the data
-data.X        the training data (instances x dimensions). It MUST be in sparse matrix format (use the command sparse).
-data.Y        the training labels (instances x 1). Each element indicates the class (from 1, ..., K).
-data.test     a struct containing the test data
-data.test.X   the test data (test_instances x dimensions). It MUST be in sparse matrix format.
-data.test.Y   the test labels (test_instances x 1). Each element indicates the class (from 1, ..., K).
+data                a struct containing the data
+   data.X           the training data (instances x dimensions). It MUST be in sparse matrix format (use the command sparse).
+   data.Y           the training labels (instances x 1). Each element indicates the class (from 1, ..., K).
+   data.test        a struct containing the test data
+      data.test.X   the test data (test_instances x dimensions). It MUST be in sparse matrix format.
+      data.test.Y   the test labels (test_instances x 1). Each element indicates the class (from 1, ..., K).
 ```
 
 Please refer to the main files in `src/` for additional information.
