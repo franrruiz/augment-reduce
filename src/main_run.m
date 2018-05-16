@@ -11,20 +11,20 @@ dataset_name = 'mnist';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Choose the paths
-data_path = '../../augment-reduce-data/dat';     % Replace with the path to your dataset
-output_path = './results';                   % Replace with the path to the output folder
+data_path = '../../augment-reduce-data/dat';       % Replace with the path to your dataset
+param.output_path = './results';                   % Replace with the path to the output folder
 
 % NOTE: You can download the data used in the A&R paper from this repo:
 % https://bitbucket.org/franrruiz/augment-reduce-data/src
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Choose method (uncomment only one)
-method_name = 'softmax_a&r';  % Sofmax A&R
-% method_name = 'probit_a&r';   % Multinomial probit A&R
-% method_name = 'logistic_a&r'; % Multinomial logistic A&R
-% method_name = 'ove';          % One-vs-each bound [Titsias, 2016]
-% method_name = 'botev';        % The approach by [Botev et al., 2017]
-% method_name = 'softmax';      % Exact softmax
+param.method_name = 'softmax_a&r';  % Sofmax A&R
+% param.method_name = 'probit_a&r';   % Multinomial probit A&R
+% param.method_name = 'logistic_a&r'; % Multinomial logistic A&R
+% param.method_name = 'ove';          % One-vs-each bound [Titsias, 2016]
+% param.method_name = 'botev';        % The approach by [Botev et al., 2017]
+% param.method_name = 'softmax';      % Exact softmax
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Choose parameters
@@ -36,13 +36,13 @@ param.computePredTrain = 0;   % Compute predictions on training data? (it may be
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Get the data and default parameters
-[data param] = get_params_preprocess_data(param, dataset_name, data_path, method_name);
+[data param] = get_params_preprocess_data(param, dataset_name, data_path);
 
 %% Add paths
 addpath aux
 addpath infer
-if(~isdir(output_path))
-    mkdir(output_path);
+if(~isdir(param.output_path))
+    mkdir(param.output_path);
 end
 
 %% Seed
@@ -68,7 +68,8 @@ randn('seed',0);
 %    param.maxIter            maximum number of iterations
 %    param.B                  minibatch size (observations)
 %    param.ns                 minibatch size (classes)
-%    param.method             which method to use {'sm_augm', 'probit_persistent', 'logistic_persistent', 'ove', 'botev', 'softmax'}
+%    param.method_name        which method to use {'softmax_a&r', 'probit_a&r', 'logistic_a&r', 'ove', 'botev', 'softmax'}
+%    param.output_path        path to the folder to save results
 
 run_classification(data, param);
 

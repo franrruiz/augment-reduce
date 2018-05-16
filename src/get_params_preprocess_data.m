@@ -1,4 +1,4 @@
-function [data param] = get_params_preprocess_data(param, dataset_name, data_path, method_name)
+function [data param] = get_params_preprocess_data(param, dataset_name, data_path)
 
 %% Load the data and set parameters for each dataset
 % The batch size B must be a dividend of the number of training points
@@ -99,22 +99,3 @@ else
     error(['Unknown dataset name: ' dataset_name]);
     
 end
-
-%% Select the method
-if(strcmp(method_name, 'softmax_a&r'))
-    param.method = 'sm_augm';
-elseif(strcmp(method_name, 'probit_a&r'))
-    param.method = 'probit_persistent';
-elseif(strcmp(method_name, 'logistic_a&r'))
-    param.method = 'logistic_persistent';
-elseif(strcmp(method_name, 'ove'))
-    param.method = 'ove';
-elseif(strcmp(method_name, 'botev'))
-    param.method = 'botev';
-elseif(strcmp(method_name, 'softmax'))
-    param.method = 'softmax';
-else
-    error(['Unknown method name: ' method_name]);
-end
-
-

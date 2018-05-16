@@ -9,6 +9,23 @@ data.Xtr = data.X';
 %% Set config parameters
 
 % Method and batch sizes
+
+if(strcmp(param.method_name, 'softmax_a&r'))
+    param.method = 'sm_augm';
+elseif(strcmp(param.method_name, 'probit_a&r'))
+    param.method = 'probit_persistent';
+elseif(strcmp(param.method_name, 'logistic_a&r'))
+    param.method = 'logistic_persistent';
+elseif(strcmp(param.method_name, 'ove'))
+    param.method = 'ove';
+elseif(strcmp(param.method_name, 'botev'))
+    param.method = 'botev';
+elseif(strcmp(param.method_name, 'softmax'))
+    param.method = 'softmax';
+else
+    error(['Unknown method name: ' param.method_name]);
+end
+
 if(strcmp(param.method,'softmax'))
     param.ns = data.K-1;
     param.flag_imp_sampling = 0;
@@ -273,11 +290,8 @@ end
 pred.test = compute_predictions(data.test,param,pvar,data.K,1000);
 
 %% Save
-nameFile = [param.output_path '/results_' param.method '_ns' num2str(param.ns)];
+nameFile = [param.output_path '/results_' param.method_name '_nClasses' num2str(param.ns)];
 if(param.flag_imp_sampling>0)
     nameFile = [nameFile '_impSamp'];
-end
-if(hyper.s2w~=1)
-    nameFile = [nameFile '_s2' num2str(hyper.s2w)];
 end
 save([nameFile '.mat'], 'pvar', 'param', 'hyper', 'pred', '-v7.3');
