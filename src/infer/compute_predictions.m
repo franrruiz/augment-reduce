@@ -14,8 +14,7 @@ if(param.flag_mexFile)
         error(['Unknown method: ' param.method]);
     end
     
-    Xtr = data.X';
-    [yy.llh yy.acc yy.llh_all] = compute_predictions_c(data.N, data.D, K, Xtr, data.Y-1, pvar.weights.val, pvar.biases.val, ...
+    [yy.llh yy.acc yy.llh_all] = compute_predictions_c(data.N, data.D, K, data.Xtr, data.Y-1, pvar.weights.val, pvar.biases.val, ...
                                                        modelType, Nsamples, impSampStd, impSampMean, randi(intmax('int32'),1));
 	yy.llh_all(yy.llh_all<-26) = -26;
     yy.llh = mean(yy.llh_all);              

@@ -5,6 +5,7 @@ function run_classification(data, param)
 data.K = max(data.Y);
 [data.test.N data.test.D] = size(data.test.X);
 data.Xtr = data.X';
+data.test.Xtr = data.test.X';
 
 %% Set config parameters
 
